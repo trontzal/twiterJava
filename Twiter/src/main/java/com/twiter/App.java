@@ -1,10 +1,8 @@
 package com.twiter;
 
 import com.twiter.accesodatos.PostAccesoDatos;
-import com.twiter.accesodatos.RolAccesoDatos;
 import com.twiter.accesodatos.UsuarioAccesoDatos;
 import com.twiter.entidades.Post;
-import com.twiter.entidades.Rol;
 import com.twiter.entidades.Usuario;
 
 import jakarta.persistence.EntityManager;
@@ -21,17 +19,17 @@ public class App {
 	
 	public static void main(String[] args) {
 		// roles para que se puedan crear usuarios
-		RolAccesoDatos.insertar(new Rol(null, "ADMIN"));
-		RolAccesoDatos.insertar(new Rol(null, "USER"));
+//		RolAccesoDatos.insertar(new Rol(null, "ADMIN"));
+//		RolAccesoDatos.insertar(new Rol(null, "USER"));
 		
 		// obtener el rol para poder usarlo al crear el usuario
-		Rol rolAdmin = RolAccesoDatos.obtenerPorId(1);
-		Rol rolUser = RolAccesoDatos.obtenerPorId(2);
+//		Rol rolAdmin = RolAccesoDatos.obtenerPorId(1);
+//		Rol rolUser = RolAccesoDatos.obtenerPorId(2);
 		
 		//registro (insert usuario)
-		UsuarioAccesoDatos.insertar(new Usuario("gonzalo", "contra", rolAdmin));
-		UsuarioAccesoDatos.insertar(new Usuario("pepe", "pepe", rolUser));
-		UsuarioAccesoDatos.insertar(new Usuario("juan", "juan", rolUser));
+//		UsuarioAccesoDatos.insertar(new Usuario("gonzalo", "contra", rolAdmin));
+//		UsuarioAccesoDatos.insertar(new Usuario("pepe", "pepe", rolUser));
+//		UsuarioAccesoDatos.insertar(new Usuario("juan", "juan", rolUser));
 		
 		// loggeo (buscar el usuario)
 		Usuario gonzalo = UsuarioAccesoDatos.buscarPorNickName("gonzalo");
@@ -45,14 +43,14 @@ public class App {
 		PostAccesoDatos.insert(segundoPost);
 		var posts = PostAccesoDatos.obtenerTodos();
 		var postsGonzalo = PostAccesoDatos.obtenerPorIdUsuario(gonzalo.getId());
-		var postsSeguidos = PostAccesoDatos.obtenerPostsDeSeguidos(3);
+		var postsSeguidos = PostAccesoDatos.obtenerPostsDeSeguidos(pepe.getId());
 		
 		
 		// seguimientos
-		UsuarioAccesoDatos.agregarSeguidor(pepe.getId(), gonzalo.getId());
-		UsuarioAccesoDatos.agregarSeguidor(juan.getId(), gonzalo.getId());
-		UsuarioAccesoDatos.agregarSeguidor(juan.getId(), pepe.getId());
-		UsuarioAccesoDatos.dejarDeSeguir(pepe.getId(), gonzalo.getId());
+//		UsuarioAccesoDatos.agregarSeguidor(pepe.getId(), gonzalo.getId());
+//		UsuarioAccesoDatos.agregarSeguidor(juan.getId(), gonzalo.getId());
+//		UsuarioAccesoDatos.agregarSeguidor(juan.getId(), pepe.getId());
+//		UsuarioAccesoDatos.dejarDeSeguir(pepe.getId(), gonzalo.getId());
 		var seguidoresGonzalo = UsuarioAccesoDatos.verSeguidores(gonzalo.getId());
 		var segidosJuan = UsuarioAccesoDatos.verSeguidos(juan.getId());
 //		var verTodosLosUsuarios = UsuarioAccesoDatos.obtenerTodos();
