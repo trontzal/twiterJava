@@ -18,11 +18,24 @@ public class PostAccesoDatos {
 	}
 
 	public static List<PostDTO> obtenerTodos() {
-		System.err.println("\n obtenerTodosLosPosts");
-		return enTransaccion(em -> em.createQuery(
-				"select p.id, p.usuario.nickName, p.fecha, p.texto, size(p.retwiteadoPor) from Post p order by p.fecha desc",
-				PostDTO.class).getResultList());
+	    System.err.println("\n obtenerTodosLosPosts");
+	    return enTransaccion(em -> em.createNativeQuery("""
+	                            SELECT
+	                                p.id,
+	                                u.nick_name,
+	                                p.texto,
+	                                COUNT(pr.usuario_id) AS retweet_count
+	                            FROM
+	                                posts p
+	                                    JOIN
+	                                usuarios u ON p.usuario_id = u.id
+	                                    LEFT JOIN
+	                                posts_retwiteados pr ON p.id = pr.post_id
+	                            GROUP BY p.id, u.nick_name, p.texto
+	                            ORDER BY p.id
+	                            """, PostDTO.class).getResultList());
 	}
+
 
 	public static List<Post> obtenerPorIdUsuario(long id) {
 		System.err.println("\n Obtener posts por usuario id");
@@ -31,21 +44,19 @@ public class PostAccesoDatos {
 				Post.class).setParameter("id", id).getResultList());
 	}
 
-	
 	// mal
-	public static List<Object> obtenerPostsDeSeguidos(long id){
+	public static List<Object> obtenerPostsDeSeguidos(long id) {
 		System.err.println("\n Obtener todos los posts de los siguiendos");
-		
-		List<Object> postSeguidos = enTransaccion(em ->{
-			Query query = em.createNativeQuery(
-					"SELECT p.fecha, u.nick_name, p.texto FROM posts AS p JOIN usuarios AS u ON p.usuario_id = u.id WHERE u.id IN (SELECT s.seguidor_de_id AS sigue_a FROM usuarios AS u JOIN seguidores AS s ON u.id = s.usuario_id WHERE s.usuario_id = :id) ORDER BY p.fecha;");
+
+		List<Object> postSeguidos = enTransaccion(em -> {
+			Query query = em.createNativeQuery("");
 			query.setParameter("id", id);
 			@SuppressWarnings("unchecked")
 			List<Object> resultList = query.getResultList();
 
 			return resultList;
 		});
-		
+
 		return postSeguidos;
 	}
 }
