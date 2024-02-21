@@ -43,9 +43,9 @@ public class App {
 //		Post segundoPost = new Post(pepe, "Segundo post de mi aplicacion de twiter por pepe");
 //		PostAccesoDatos.insert(primerPost);
 //		PostAccesoDatos.insert(segundoPost);
-		var posts = PostAccesoDatos.obtenerTodos();
+//		var posts = PostAccesoDatos.obtenerTodos();
 //		var postsGonzalo = PostAccesoDatos.obtenerPorIdUsuario(gonzalo.getId());
-//		var postsSeguidos = PostAccesoDatos.obtenerPostsDeSeguidos(pepe.getId());
+		var postsSeguidos = PostAccesoDatos.obtenerPostsDeSeguidos(pepe.getId());
 		
 		
 		// seguimientos
@@ -62,8 +62,8 @@ public class App {
 //		System.out.println("\nVer usuario gonzalo");
 //		System.out.println(gonzalo);
 
-		System.out.println("\nVer todos los posts");
-		System.out.println(posts);
+//		System.out.println("\nVer todos los posts");
+//		System.out.println(posts);
 		
 //		System.out.println("\nVer Posts gonzalo");
 //		System.out.println(postsGonzalo);
@@ -75,8 +75,8 @@ public class App {
 //		System.out.println(segidosJuan);
 		
 		// NO funciona
-//		System.out.println("\nVer post de seguidos de pepe");
-//		System.out.println(postsSeguidos);
+		System.out.println("\nVer post de seguidos de pepe");
+		System.out.println(postsSeguidos);
 		
 //		System.out.println("\nVer todos los usuarios");
 //		System.out.println(verTodosLosUsuarios);
