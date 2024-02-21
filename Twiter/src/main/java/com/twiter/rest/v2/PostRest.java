@@ -1,11 +1,18 @@
 package com.twiter.rest.v2;
 
-public class PostRest {
+import java.util.List;
 
-//	@GET
-//	public Iterable<Post> obetenerTodos(){
-//		Post post = PostAccesoDatos.obtenerTodos();
-//		
-//		return 
-//	}
+import com.twiter.Dtos.PostDTO;
+import com.twiter.accesodatos.PostAccesoDatos;
+
+import jakarta.ws.rs.GET;
+import jakarta.ws.rs.Path;
+
+@Path("/posts")
+public class PostRest {
+	
+	@GET
+	public List<PostDTO> obtenerTodos(){
+		return PostAccesoDatos.obtenerTodos();
+	}
 }

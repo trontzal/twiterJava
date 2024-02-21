@@ -1,8 +1,10 @@
 package com.twiter;
 
 import com.twiter.accesodatos.PostAccesoDatos;
+import com.twiter.accesodatos.RolAccesoDatos;
 import com.twiter.accesodatos.UsuarioAccesoDatos;
 import com.twiter.entidades.Post;
+import com.twiter.entidades.Rol;
 import com.twiter.entidades.Usuario;
 
 import jakarta.persistence.EntityManager;
@@ -23,8 +25,8 @@ public class App {
 //		RolAccesoDatos.insertar(new Rol(null, "USER"));
 		
 		// obtener el rol para poder usarlo al crear el usuario
-//		Rol rolAdmin = RolAccesoDatos.obtenerPorId(1);
-//		Rol rolUser = RolAccesoDatos.obtenerPorId(2);
+		Rol rolAdmin = RolAccesoDatos.obtenerPorId(1);
+		Rol rolUser = RolAccesoDatos.obtenerPorId(2);
 		
 		//registro (insert usuario)
 //		UsuarioAccesoDatos.insertar(new Usuario("gonzalo", "contra", rolAdmin));
@@ -37,13 +39,13 @@ public class App {
 		Usuario juan = UsuarioAccesoDatos.buscarPorNickName("juan");
 		
 		// gestion de posts
-		Post primerPost = new Post(gonzalo, "Primer post de mi aplicacion de twiter");
-		Post segundoPost = new Post(pepe, "Segundo post de mi aplicacion de twiter por pepe");
-		PostAccesoDatos.insert(primerPost);
-		PostAccesoDatos.insert(segundoPost);
+//		Post primerPost = new Post(gonzalo, "Primer post de mi aplicacion de twiter");
+//		Post segundoPost = new Post(pepe, "Segundo post de mi aplicacion de twiter por pepe");
+//		PostAccesoDatos.insert(primerPost);
+//		PostAccesoDatos.insert(segundoPost);
 		var posts = PostAccesoDatos.obtenerTodos();
-		var postsGonzalo = PostAccesoDatos.obtenerPorIdUsuario(gonzalo.getId());
-		var postsSeguidos = PostAccesoDatos.obtenerPostsDeSeguidos(pepe.getId());
+//		var postsGonzalo = PostAccesoDatos.obtenerPorIdUsuario(gonzalo.getId());
+//		var postsSeguidos = PostAccesoDatos.obtenerPostsDeSeguidos(pepe.getId());
 		
 		
 		// seguimientos
@@ -51,32 +53,32 @@ public class App {
 //		UsuarioAccesoDatos.agregarSeguidor(juan.getId(), gonzalo.getId());
 //		UsuarioAccesoDatos.agregarSeguidor(juan.getId(), pepe.getId());
 //		UsuarioAccesoDatos.dejarDeSeguir(pepe.getId(), gonzalo.getId());
-		var seguidoresGonzalo = UsuarioAccesoDatos.verSeguidores(gonzalo.getId());
-		var segidosJuan = UsuarioAccesoDatos.verSeguidos(juan.getId());
+//		var seguidoresGonzalo = UsuarioAccesoDatos.verSeguidores(gonzalo.getId());
+//		var segidosJuan = UsuarioAccesoDatos.verSeguidos(juan.getId());
 //		var verTodosLosUsuarios = UsuarioAccesoDatos.obtenerTodos();
 		
 		
 		// Salidas de consola ------------------------------------------------
-		System.out.println("\nVer usuario gonzalo");
-		System.out.println(gonzalo);
+//		System.out.println("\nVer usuario gonzalo");
+//		System.out.println(gonzalo);
 
 		System.out.println("\nVer todos los posts");
 		System.out.println(posts);
 		
-		System.out.println("\nVer Posts gonzalo");
-		System.out.println(postsGonzalo);
+//		System.out.println("\nVer Posts gonzalo");
+//		System.out.println(postsGonzalo);
 
-		System.out.println("\nVer seguidores gonzalo");
-		System.out.println(seguidoresGonzalo);
+//		System.out.println("\nVer seguidores gonzalo");
+//		System.out.println(seguidoresGonzalo);
 		
-		System.out.println("\nVer seguidos de pepe");
-		System.out.println(segidosJuan);
+//		System.out.println("\nVer seguidos de pepe");
+//		System.out.println(segidosJuan);
 		
 		// NO funciona
-		System.out.println("\nVer post de seguidos de pepe");
-		System.out.println(postsSeguidos);
+//		System.out.println("\nVer post de seguidos de pepe");
+//		System.out.println(postsSeguidos);
 		
-		System.out.println("\nVer todos los usuarios");
+//		System.out.println("\nVer todos los usuarios");
 //		System.out.println(verTodosLosUsuarios);
 	}
 	
