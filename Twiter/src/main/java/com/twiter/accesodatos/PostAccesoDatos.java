@@ -17,24 +17,27 @@ public class PostAccesoDatos {
 		});
 	}
 
+	@SuppressWarnings("unchecked")
 	public static List<PostDTO> obtenerTodos() {
 	    System.err.println("\n obtenerTodosLosPosts");
 	    return enTransaccion(em -> em.createNativeQuery("""
 	                            SELECT
 	                                p.id,
-	                                u.nick_name,
+	                                u.nick_name AS usuario,
 	                                p.texto,
-	                                COUNT(pr.usuario_id) AS retweet_count
+	                                COUNT(pr.usuario_id) AS numeroRetweets,
+	                                p.fecha
 	                            FROM
 	                                posts p
 	                                    JOIN
 	                                usuarios u ON p.usuario_id = u.id
 	                                    LEFT JOIN
 	                                posts_retwiteados pr ON p.id = pr.post_id
-	                            GROUP BY p.id, u.nick_name, p.texto
+	                            GROUP BY p.id, u.nick_name, p.texto, p.fecha
 	                            ORDER BY p.id
 	                            """, PostDTO.class).getResultList());
 	}
+
 
 
 	public static List<Post> obtenerPorIdUsuario(long id) {

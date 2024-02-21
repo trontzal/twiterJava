@@ -1,4 +1,6 @@
 package com.twiter.Dtos;
 
-public record PostDTO(Long id, String usuario, String texto, Long numeroRetweets) {
+import java.util.Date;
+
+public record PostDTO(Long id, String usuario, String texto, Long numeroRetweets, Date fecha) {
 }
